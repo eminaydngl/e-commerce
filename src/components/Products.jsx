@@ -10,14 +10,14 @@ function Products(){
                 <p className="font-normal text-sm text-brand-gray">problems trying to resolve the conflict between</p>
             </div>
 
-            <div className="flex flex-row gap-8 justify-center">
+            <div className="flex flex-col items-center md:flex-row gap-8 justify-center">
                 <ProductCard />
                 <ProductCard />
                 <ProductCard />
                 <ProductCard />
             </div>
 
-            <div className="flex flex-row gap-8 justify-center">
+            <div className="flex flex-col items-center md:flex-row gap-8 justify-center">
                 <ProductCard />
                 <ProductCard />
                 <ProductCard />

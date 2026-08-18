@@ -10,7 +10,7 @@ function ContainerFluid() {
 
                         <p className="text-sm font-bold tracking-widest uppercase mb-6">Summer 2020</p>
 
-                        <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">Vita classNameic<br />Product</h2>
+                        <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">Vita classic<br />Product</h2>
 
                         <p className="text-sm mb-8 opacity-80 max-w-sm mx-auto md:mx-0">We know how large objects will act, We
                             know how are objects will act, We know</p>
@@ -19,7 +19,7 @@ function ContainerFluid() {
                         <div
                             className="flex flex-col sm:flex-row items-center justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-6">
                             
-                            <span className="text-2xl font-bold">$16.48</span>
+                            <span className="text-2xl font-bold">$16.50</span>
                             
                             <button
                                 className="bg-brand-green hover:bg-green-600 text-white font-bold py-3 px-8 rounded uppercase text-sm tracking-wide">
