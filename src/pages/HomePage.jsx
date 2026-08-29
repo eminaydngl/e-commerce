@@ -1,23 +1,22 @@
 import Header from "../layout/Header"
 import Footer from "../layout/Footer"
-import ShopCard from "../components/ShopCard"
+import EditorsPickSection from "../components/Home/EditorsPickSection"
 import HeroSection from "../components/HeroSeciton"
-import Products from "../components/Products"
-import ContainerFluid from "../components/ContainerFluid"
-import ContainerFluid2 from "../components/ContainerFluid2"
-import ContainerFluid3 from "../components/ContainerFluid3"
-import Post from "../components/Post"
+import ProductPromoBanner from "../components/Home/ProductPromoBanner"
+import ProductFeatureBlock from "../components/Home/ProductFeatureBlock"
+import FeaturedPostsSection from "../components/Home/FeaturedPostsSection"
+import BestsellerSection from "../components/Home/BestsellerSection"
 
 function HomePage(){
     return (
         <>
         <Header />
         <HeroSection />
-        <ShopCard />
-        <Products />
-        <ContainerFluid />
-        <ContainerFluid2 />
-        <ContainerFluid3 />
+        <EditorsPickSection />
+        <BestsellerSection />
+        <ProductPromoBanner />
+        <ProductFeatureBlock />
+        <FeaturedPostsSection />
         <Footer />
         </>
     )

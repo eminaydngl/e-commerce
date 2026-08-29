@@ -1,19 +1,19 @@
 import { Clock, TrendingUp } from 'lucide-react'
-function Post() {
+function Post({picture}) {
     return (
         <>
             <div className="flex flex-col w-2xs">
 
-                <img src="https://picsum.photos/id/64/400/500" alt="" className="aspect-square w-full object-cover" />
+                <img src={picture} alt="" className="aspect-square w-full object-cover" />
 
-                <div className="flex flex-col gap-3 m-6 mb-8">,
+                <div className="flex flex-col gap-3 m-6 mb-8">
 
                     <div className="flex gap-4">
 
                         <a href="#" className="text-xs font-normal text-brand-gray hover:text-brand-blue ">Google</a>
                         <a href="#" className="text-xs font-normal text-brand-gray hover:text-brand-blue">Trending</a>
                         <a href="#" className="text-xs font-normal text-brand-gray hover:text-brand-blue">New</a>
-                        
+
                     </div>
 
                     <h4 className="text-xl font-normal">Loudest à la Madison #1

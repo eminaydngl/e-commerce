@@ -1,4 +1,4 @@
-function ShopCard(){
+function EditorsPickSection(){
     return (
         <>
         <section className="py-20 bg-brand-light-gray" data-purpose="editors-pick">
@@ -70,4 +70,4 @@ function ShopCard(){
     )
 }
 
-export default ShopCard
+export default EditorsPickSection

@@ -1,6 +1,6 @@
 import Post from "./Post"
 
-function ContainerFluid3() {
+function FeaturedPostsSection() {
     return (
         <>
         <section className="flex flex-col gap-20 ">
@@ -16,9 +16,9 @@ function ContainerFluid3() {
             </div>
             
             <div className="flex flex-col items-center md:flex-row gap-7 justify-center">
-                <Post />
-                <Post />
-                <Post />
+                <Post picture={"https://picsum.photos/id/222/400/500"} />
+                <Post picture={"https://picsum.photos/id/555/400/500"} />
+                <Post picture={"https://picsum.photos/id/444/400/500"} />
             </div>
 
         </section>
@@ -29,4 +29,4 @@ function ContainerFluid3() {
     )
 }
 
-export default ContainerFluid3
+export default FeaturedPostsSection

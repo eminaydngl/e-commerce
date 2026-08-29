@@ -1,4 +1,4 @@
-function ContainerFluid2() {
+function ProductFeatureBlock() {
     return (
         <>
             <section className="py-20" data-purpose="lifestyle-section">
@@ -47,4 +47,4 @@ function ContainerFluid2() {
     )
 }
 
-export default ContainerFluid2
+export default ProductFeatureBlock

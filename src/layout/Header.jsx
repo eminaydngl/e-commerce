@@ -15,6 +15,7 @@ import {
     ChevronDown,
     Menu,
 } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 function Header() {
 
@@ -90,17 +91,22 @@ function Header() {
 
                 <nav className="hidden md:flex gap-4 items-center text-brand-gray font-medium">
 
-                    <a href="#" className="hover:text-brand-dark">
+                    <NavLink
+                        to="/"
+                        className={({ isActive }) => isActive ? "text-black font-bold" : "hover:text-brand-dark"}
+                    >
                         Home
-                    </a>
+                    </NavLink>
 
-                    <a
-                        href="#"
-                        className="flex items-center gap-1 hover:text-brand-dark"
+                    <NavLink
+                        to="/shop"
+                        className={({ isActive }) =>
+                            `flex items-center gap-1 hover:text-brand-dark ${isActive ? "text-black font-bold" : ""}`
+                        }
                     >
                         Shop
                         <ChevronDown size={16} />
-                    </a>
+                    </NavLink>
 
                     <a href="#" className="hover:text-brand-dark">
                         About

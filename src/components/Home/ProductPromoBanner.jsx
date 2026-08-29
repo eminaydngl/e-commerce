@@ -1,4 +1,4 @@
-function ContainerFluid() {
+function ProductPromoBanner() {
     return (
         <>
             <section className="bg-brand-teal text-white relative py-20" data-purpose="promo-banner">
@@ -45,4 +45,4 @@ function ContainerFluid() {
     )
 }
 
-export default ContainerFluid
+export default ProductPromoBanner
