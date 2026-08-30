@@ -108,17 +108,17 @@ function Header() {
                         <ChevronDown size={16} />
                     </NavLink>
 
-                    <a href="#" className="hover:text-brand-dark">
+                    <NavLink to="/about" className="hover:text-brand-dark">
                         About
-                    </a>
+                    </NavLink>
 
-                    <a href="#" className="hover:text-brand-dark">
+                    <NavLink to="/team" className="hover:text-brand-dark">
                         Blog
-                    </a>
+                    </NavLink>
 
-                    <a href="#" className="hover:text-brand-dark">
+                    <NavLink to="/contact" className="hover:text-brand-dark">
                         Contact
-                    </a>
+                    </NavLink>
 
                     <a href="#" className="hover:text-brand-dark">
                         Pages
