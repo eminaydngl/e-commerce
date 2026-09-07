@@ -16,10 +16,18 @@ import {
     Menu,
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Header() {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const user = useSelector((state) => state.client.user);
+
+    const userBool = user?.name?.length > 0 ? true : false;
+
+
+
 
     return (
         <header>
@@ -108,45 +116,51 @@ function Header() {
                         <ChevronDown size={16} />
                     </NavLink>
 
-                    <NavLink to="/about" className="hover:text-brand-dark">
+                    <NavLink to="/about" className={({ isActive }) =>
+                        `flex items-center gap-1 hover:text-brand-dark ${isActive ? "text-black font-bold" : ""}`
+                    }>
                         About
                     </NavLink>
 
-                    <NavLink to="/team" className="hover:text-brand-dark">
+                    <NavLink to="/team" className={({ isActive }) =>
+                        `flex items-center gap-1 hover:text-brand-dark ${isActive ? "text-black font-bold" : ""}`
+                    }>
                         Blog
                     </NavLink>
 
-                    <NavLink to="/contact" className="hover:text-brand-dark">
+                    <NavLink to="/contact" className={({ isActive }) =>
+                        `flex items-center gap-1 hover:text-brand-dark ${isActive ? "text-black font-bold" : ""}`
+                    }>
                         Contact
                     </NavLink>
 
-                    <a href="#" className="hover:text-brand-dark">
+                    <NavLink to="#" className={({ isActive }) =>
+                        `flex items-center gap-1 hover:text-brand-dark`
+                    }>
                         Pages
-                    </a>
+                    </NavLink>
 
                 </nav>
 
 
                 <div className="hidden md:flex items-center gap-6">
 
-                    <div className="flex items-center gap-1">
-
-                        <a
-                            href="#"
-                            className="flex items-center gap-1 text-brand-blue font-semibold"
-                        >
+                    {userBool ? (
+                        <div className="flex items-center gap-1 text-brand-blue font-semibold">
                             <User size={18} />
-                            login /
-                        </a>
-
-                        <a
-                            href="#"
-                            className="text-brand-blue font-semibold"
-                        >
-                            Register
-                        </a>
-
-                    </div>
+                            {user.name}
+                        </div>
+                    ) : (
+                        <div className="flex items-center gap-1">
+                            <NavLink to="/login" className="flex items-center gap-1 text-brand-blue font-semibold">
+                                <User size={18} />
+                                login /
+                            </NavLink>
+                            <NavLink to="/signup" className="text-brand-blue font-semibold">
+                                Register
+                            </NavLink>
+                        </div>
+                    )}
 
 
                     <Search
@@ -252,6 +266,9 @@ function Header() {
 
         </header>
     );
+
+
+
 }
 
 export default Header;
