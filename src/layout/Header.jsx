@@ -17,10 +17,15 @@ import {
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import ShopDropdown from "../components/Shop/ShopDropdown";
 
 function Header() {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const [isShopOpen, setIsShopOpen] = useState(false);
+
+    const categories = useSelector((state) => state.product.categories);
 
     const user = useSelector((state) => state.client.user);
 
@@ -106,15 +111,44 @@ function Header() {
                         Home
                     </NavLink>
 
-                    <NavLink
-                        to="/shop"
-                        className={({ isActive }) =>
-                            `flex items-center gap-1 hover:text-brand-dark ${isActive ? "text-black font-bold" : ""}`
-                        }
-                    >
-                        Shop
-                        <ChevronDown size={16} />
-                    </NavLink>
+
+
+
+                    <div className="relative group">
+
+                        <NavLink
+                            to="/shop"
+                            className={({ isActive }) =>
+                                `flex items-center gap-1 hover:text-brand-dark ${isActive ? "text-black font-bold" : ""
+                                }`
+                            }
+                        >
+                            Shop
+                            <ChevronDown size={16} />
+                        </NavLink>
+
+
+                        <div className="absolute
+                            left-1/2
+                            -translate-x-1/2
+                            top-full
+                            pt-4
+                            hidden
+                            group-hover:flex
+                            bg-white
+                            shadow-lg
+                            z-50
+                            px-8
+                            py-6
+                            gap-16
+                            min-w-[500px]">
+                            <ShopDropdown />
+                        </div>
+
+                    </div>
+
+
+
 
                     <NavLink to="/about" className={({ isActive }) =>
                         `flex items-center gap-1 hover:text-brand-dark ${isActive ? "text-black font-bold" : ""}`
@@ -233,33 +267,58 @@ function Header() {
             {isMenuOpen && (
                 <nav className="flex md:hidden flex-col items-center gap-6 py-8 text-brand-gray text-xl font-medium">
 
-                    <a
-                        href="#"
-                        className="hover:text-brand-dark"
+                    <NavLink
+                        to="/"
+                        className={({ isActive }) => isActive ? "text-black font-bold" : "hover:text-brand-dark"}
                     >
                         Home
-                    </a>
+                    </NavLink>
 
-                    <a
-                        href="#"
-                        className="hover:text-brand-dark"
-                    >
-                        Product
-                    </a>
+                    <div className="flex flex-col items-center">
 
-                    <a
-                        href="#"
-                        className="hover:text-brand-dark"
-                    >
-                        Pricing
-                    </a>
+                        <button
+                            onClick={() => setIsShopOpen(!isShopOpen)}
+                            className="flex items-center gap-1 hover:text-brand-dark"
+                        >
+                            Shop
+                            <ChevronDown
+                                size={16}
+                                className={`transition-transform ${isShopOpen ? "rotate-180" : ""
+                                    }`}
+                            />
+                        </button>
 
-                    <a
-                        href="#"
-                        className="hover:text-brand-dark"
-                    >
+                        {isShopOpen && (
+                            <div className="flex flex-col items-center gap-4 mt-5 text-base">
+                                <ShopDropdown />
+                            </div>
+                        )}
+
+                    </div>
+
+                    <NavLink to="/about" className={({ isActive }) =>
+                        `flex items-center gap-1 hover:text-brand-dark ${isActive ? "text-black font-bold" : ""}`
+                    }>
+                        About
+                    </NavLink>
+
+                    <NavLink to="/team" className={({ isActive }) =>
+                        `flex items-center gap-1 hover:text-brand-dark ${isActive ? "text-black font-bold" : ""}`
+                    }>
+                        Blog
+                    </NavLink>
+
+                    <NavLink to="/contact" className={({ isActive }) =>
+                        `flex items-center gap-1 hover:text-brand-dark ${isActive ? "text-black font-bold" : ""}`
+                    }>
                         Contact
-                    </a>
+                    </NavLink>
+
+                    <NavLink to="#" className={({ isActive }) =>
+                        `flex items-center gap-1 hover:text-brand-dark`
+                    }>
+                        Pages
+                    </NavLink>
 
                 </nav>
             )}

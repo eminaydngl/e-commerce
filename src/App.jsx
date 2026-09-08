@@ -13,18 +13,16 @@ import Login from './pages/Login';
 import { useDispatch } from 'react-redux';
 import { setUser } from './store/actions/clientActions';
 import { useEffect } from 'react';
+import { categoriesThunk, verifyThunk } from './store/actions/thunks';
 
 function App() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const name = localStorage.getItem("name");
 
-    if (token && name) {
-      dispatch(setUser({ token, name }));
-    }
+  useEffect(() => {
+    dispatch(verifyThunk());
+    dispatch(categoriesThunk());
   }, []);
 
   return (

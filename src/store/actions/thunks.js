@@ -1,5 +1,6 @@
-import instance from "../../api/axios";
+import instance, { setAuthToken } from "../../api/axios";
 import { setRoles, setUser } from "./clientActions";
+import { setCategories } from "./productActions";
 
 
 export const getRolesThunk = () => {
@@ -32,3 +33,39 @@ export const loginThunk = (formData) => {
         }
     }
 }
+
+export const categoriesThunk = () => {
+    return async (dispatch) => {
+        try {
+            const response = await instance.get("/categories");
+            dispatch(setCategories(response.data));
+        } catch (error) {
+            console.error("Kategorilerde bir sorun var : " , error);
+        }
+    }
+}
+
+export const verifyThunk = () => {
+    return async (dispatch) => {
+        const token = localStorage.getItem("token");
+
+        if(!token){
+            return;
+        }
+
+        setAuthToken(token);
+
+        try {
+            const response = await instance.get("/verify");
+            dispatch(setUser(response.data));
+
+            const newToken = response.data.token;
+            localStorage.setItem("token" , newToken);
+            setAuthToken(newToken);
+        } catch (error) {
+            localStorage.removeItem("token");
+            setAuthToken(null);
+            console.error("Token doğrulanamadı:", error);
+        }
+    }   
+} 
