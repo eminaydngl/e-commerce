@@ -1,4 +1,4 @@
-import { SET_CATEGORIES, SET_PRODUCT_LIST, SET_TOTAL, SET_FETCH_STATE, SET_LIMIT, SET_OFFSET, SET_FILTER } from "../actionTypes";
+import { SET_CATEGORIES, SET_PRODUCT_LIST, SET_TOTAL, SET_FETCH_STATE, SET_LIMIT, SET_OFFSET, SET_FILTER, SET_PRODUCT } from "../actionTypes";
 
 export const setCategories = (categories) => ({
     type : SET_CATEGORIES ,
@@ -9,6 +9,11 @@ export const setProductList = (productList) => ({
     type : SET_PRODUCT_LIST ,
     payload : productList
 });
+
+export const setProduct = (product) => ({
+    type : SET_PRODUCT , 
+    payload : product
+})
 
 export const setTotal = (total) => ({
     type : SET_TOTAL ,

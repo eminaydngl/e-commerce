@@ -25,14 +25,9 @@ function Header() {
 
     const [isShopOpen, setIsShopOpen] = useState(false);
 
-    const categories = useSelector((state) => state.product.categories);
-
     const user = useSelector((state) => state.client.user);
 
     const userBool = user?.name?.length > 0 ? true : false;
-
-
-
 
     return (
         <header>
@@ -146,8 +141,6 @@ function Header() {
                         </div>
 
                     </div>
-
-
 
 
                     <NavLink to="/about" className={({ isActive }) =>
@@ -325,8 +318,6 @@ function Header() {
 
         </header>
     );
-
-
 
 }
 

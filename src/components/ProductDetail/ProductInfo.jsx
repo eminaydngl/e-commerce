@@ -1,9 +1,15 @@
 import { Star, ChevronLeft, ChevronRight, Heart, ShoppingCart, Eye } from "lucide-react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 function ProductInfo({ product }) {
 
-    const images = product.images;
+    console.log("PRODUCT INFO'YA GELEN:", product);
+    console.log("PRODUCT IMAGES:", product?.images[0].url);
+
+    const inStock = product.stock > 0 ? "In Stock" : "Stokta Kalmadi";
+
+    const images = product.images.map((image) => image.url);
 
     const [activeImage, setActiveImage] = useState(0);
 
@@ -59,29 +65,33 @@ function ProductInfo({ product }) {
 
             <div className="flex-1 flex flex-col gap-3">
 
-                <h4 className="font-normal text-xl text-brand-dark">{product.title}</h4>
+                <h4 className="font-normal text-xl text-brand-dark">{product.name}</h4>
 
                 <div className="flex items-center gap-3">
                     <div className="flex gap-1">
-                        <Star size={16} className="fill-yellow-400 text-yellow-400" />
-                        <Star size={16} className="fill-yellow-400 text-yellow-400" />
-                        <Star size={16} className="fill-yellow-400 text-yellow-400" />
-                        <Star size={16} className="fill-yellow-400 text-yellow-400" />
-                        <Star size={16} className="fill-none text-yellow-400" />
+                        {Array.from({ length: 5 }).map((_, index) => {
+                            const starValue = index + 1;
+                            const isFilled = starValue <= Math.round(product.rating);
+
+                            return (
+                                <Star
+                                    key={index}
+                                    size={16}
+                                    className={isFilled ? "fill-yellow-400 text-yellow-400" : "fill-none text-yellow-400"}
+                                />
+                            );
+                        })}
                     </div>
-                    <p className="font-bold text-sm text-brand-gray">{product.reviewCount} Reviews</p>
+                    <p className="font-bold text-sm text-brand-gray">{product.rating} Reviews</p>
                 </div>
 
-                <h3 className="font-bold text-2xl text-brand-dark">${product.price.toLocaleString()}</h3>
+                <h3 className="font-bold text-2xl text-brand-dark">{product.price.toLocaleString()} TL</h3>
 
                 <h6 className="font-bold text-sm text-brand-gray">
-                    Availability : <span className="text-brand-blue">In Stock</span>
+                    Availability : <span className="text-brand-blue">{inStock}</span>
                 </h6>
 
-                <p className="font-normal text-sm text-brand-gray mt-8 pb-6 border-b border-gray-200">Met minim Mollie non desert Alamo est sit cliquey dolor
-                    do met sent. RELIT official consequent door ENIM RELIT Mollie.
-                    Excitation venial consequent sent nostrum met.
-                </p>
+                <p className="font-normal text-sm text-brand-gray mt-8 pb-6 border-b border-gray-200">{product.description}</p>
 
                 <div className="flex flex-col gap-11">
 
@@ -121,3 +131,4 @@ function ProductInfo({ product }) {
 }
 
 export default ProductInfo;
+

@@ -5,8 +5,6 @@ function ShopDropdown() {
 
     const categories = useSelector((state) =>  state.product.categories);
 
-
-
     return (
         <>
                 <div className="flex flex-col gap-3">
@@ -20,7 +18,7 @@ function ShopDropdown() {
                         .map((category) => (
                             <NavLink
                                 key={category.id}
-                                to={`/shop/kadin/${category.code.split(":")[1]}/${category.id}`}
+                                to={`/shop/k/${category.code.split(":")[1]}/${category.id}`}
                                 className="text-brand-gray hover:text-brand-dark"
                             >
                                 {category.title}
@@ -41,7 +39,7 @@ function ShopDropdown() {
                         .map((category) => (
                             <NavLink
                                 key={category.id}
-                                to={`/shop/erkek/${category.code.split(":")[1]}/${category.id}`}
+                                to={`/shop/e/${category.code.split(":")[1]}/${category.id}`}
                                 className="text-brand-gray hover:text-brand-dark"
                             >
                                 {category.title}

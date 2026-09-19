@@ -1,4 +1,3 @@
-
 import HomePage from './pages/HomePage'
 import './App.css'
 import ShopPage from './pages/ShopPage'
@@ -11,9 +10,8 @@ import AboutPage from './pages/AboutPage';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import { useDispatch } from 'react-redux';
-import { setUser } from './store/actions/clientActions';
 import { useEffect } from 'react';
-import { categoriesThunk, verifyThunk } from './store/actions/thunks';
+import { categoriesThunk, productThunk, verifyThunk } from './store/actions/thunks';
 
 function App() {
 
@@ -23,6 +21,7 @@ function App() {
   useEffect(() => {
     dispatch(verifyThunk());
     dispatch(categoriesThunk());
+    dispatch(productThunk());
   }, []);
 
   return (
@@ -30,8 +29,8 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} exact />
-        <Route path="/shop" element={<ShopPage />} />
-        <Route path='/product/:id' element={<ProductDetailPage />} />
+        <Route path="/shop/:gender?/:categoryName?/:categoryId?" element={<ShopPage />} />
+        <Route path='shop/:gender?/:categoryName/:categoryId/:productNameSlug/:productId' element={<ProductDetailPage />} />
         <Route path='/contact' element={<ContactPage />} />
         <Route path='/team' element={<TeamPage />} />
         <Route path='/about' element={<AboutPage />} />

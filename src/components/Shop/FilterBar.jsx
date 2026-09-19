@@ -1,16 +1,23 @@
 import { LayoutGrid, List } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { filterThunk } from "../../store/actions/thunks";
 
-function FilterBar({setViewMode}) {
+function FilterBar({ setViewMode , filter , setFilter , sort , setSort , setAppliedFilter }) {
 
+    const dispatch = useDispatch();
+
+    function hadnleShortChange(e) {
+        setSort(e.target.value);
+    }
+
+    function handleFilter() {
+        setAppliedFilter(filter);
+    }
 
 
     return (
         <section className="flex flex-col items-center gap-6 my-6 font-bold text-sm text-brand-gray 
         md:flex-row md:justify-center md:gap-60">
-
-            <p className="flex items-center">
-                Showing all 12 results
-            </p>
 
             <div className="flex items-center gap-2">
 
@@ -26,18 +33,31 @@ function FilterBar({setViewMode}) {
 
             </div>
 
+            <input
+            value={filter}
+                onChange={(e) => setFilter(e.target.value)}
+                placeholder="Ürün ara..."
+                className="pl-2 h-[40px]"
+            />
+
             <div className="flex gap-4 w-full justify-center md:w-auto">
 
-                <select className="font-normal bg-gray-100 rounded-md h-12 px-4 border border-gray-300">
+                <select
+                    value={sort}
+                    onChange={hadnleShortChange}
+                    className="font-normal bg-gray-100 rounded-md h-12 px-4 border border-gray-300">
 
-                    <option>Popularity</option>
-                    <option>Price: Low to High</option>
-                    <option>Price: High to Low</option>
-                    <option>Newest</option>
-                    
+                    <option value="">Sıralama seç</option>
+                    <option value="price:asc">Ucuzdan pahalıya</option>
+                    <option value="price:desc">Pahalıdan ucuza</option>
+                    <option value="rating:desc">En yüksek puanlı</option>
+                    <option value="rating:asc">En düşük puanlı</option>
+
                 </select>
 
-                <button className="bg-brand-blue text-white rounded-md h-12 px-6">
+                <button
+                    onClick={handleFilter}
+                    className="bg-brand-blue text-white rounded-md h-12 px-6">
                     Filter
                 </button>
 
