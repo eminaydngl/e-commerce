@@ -1,11 +1,9 @@
 import { Star, ChevronLeft, ChevronRight, Heart, ShoppingCart, Eye } from "lucide-react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setCart } from "../../store/actions/shoppingCartActions";
 
-function ProductInfo({ product }) {
-
-    console.log("PRODUCT INFO'YA GELEN:", product);
-    console.log("PRODUCT IMAGES:", product?.images[0].url);
+function ProductInfo({ product, setisOpenCartCartDrawer }) {
 
     const inStock = product.stock > 0 ? "In Stock" : "Stokta Kalmadi";
 
@@ -20,6 +18,28 @@ function ProductInfo({ product }) {
     const prevImage = () => {
         setActiveImage((prev) => (prev - 1 + images.length) % images.length);
     };
+
+    const dispatch = useDispatch();
+
+    const cart = useSelector((state) => state.shopping.cart);
+
+    function shopButton() {
+        const existingItem = cart.find((item) => item.product.id === product.id);
+
+        let newCart;
+
+        setisOpenCartCartDrawer(true);
+
+        if (existingItem) {
+            newCart = cart.map((item) =>
+                item.product.id === product.id ? { ...item, count: item.count + 1 } : item);
+        } else {
+            newCart = [...cart, { count: 1, checked: true, product: product }];
+        }
+
+        dispatch(setCart(newCart));
+
+    }
 
     return (
         <section className="flex flex-col md:flex-row gap-8 max-w-5xl mx-auto px-4 mb-14">
@@ -113,7 +133,9 @@ function ProductInfo({ product }) {
                             <Heart size={18} />
                         </button>
 
-                        <button className="w-11 h-11 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">
+                        <button
+                            onClick={shopButton}
+                            className="w-11 h-11 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">
                             <ShoppingCart size={18} />
                         </button>
 

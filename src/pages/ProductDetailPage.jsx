@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { detailPageThunk } from "../store/actions/thunks"
 
-function ProductDetailPage() {
+function ProductDetailPage({setisOpenCartCartDrawer}) {
 
     const { productId } = useParams();
 
@@ -36,7 +36,7 @@ function ProductDetailPage() {
                     <div className="w-12 h-12 border-4 border-gray-200 border-t-brand-blue rounded-full animate-spin"></div>
                 </div>
             ) : (
-                product?.id && <ProductInfo product={product} />
+                product?.id && <ProductInfo product={product} setisOpenCartCartDrawer={setisOpenCartCartDrawer}/>
             )}
             <ProductDetailSection />
             <BestsellerProducts />

@@ -29,7 +29,12 @@ function Header() {
 
     const userBool = user?.name?.length > 0 ? true : false;
 
+    const carts = useSelector((state) => state.shopping.cart);
+
+    const totalShop = carts.reduce((sum, cart) => sum + cart.count, 0);
+
     return (
+
         <header>
 
             <div
@@ -196,7 +201,7 @@ function Header() {
                     />
 
 
-                    <span className="relative">
+                    <NavLink to={"/shoppingCard"} className="relative">
 
                         <ShoppingCart
                             size={18}
@@ -204,10 +209,10 @@ function Header() {
                         />
 
                         <span className="absolute -top-2 -right-2 text-xs text-brand-blue">
-                            1
+                            {totalShop > 0 && totalShop}
                         </span>
 
-                    </span>
+                    </NavLink>
 
 
                     <span className="relative">

@@ -10,10 +10,14 @@ import AboutPage from './pages/AboutPage';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { categoriesThunk, productThunk, verifyThunk } from './store/actions/thunks';
+import CartDrawerContext from './components/CartDrawerContext';
+import ShopingCartPage from './pages/ShopingCartPage';
 
 function App() {
+
+  const [isOpenCartCartDrawer, setisOpenCartCartDrawer] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -25,21 +29,41 @@ function App() {
   }, []);
 
   return (
+
     <>
+
       <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<HomePage />} exact />
-        <Route path="/shop/:gender?/:categoryName?/:categoryId?" element={<ShopPage />} />
-        <Route path='shop/:gender?/:categoryName/:categoryId/:productNameSlug/:productId' element={<ProductDetailPage />} />
-        <Route path='/contact' element={<ContactPage />} />
-        <Route path='/team' element={<TeamPage />} />
-        <Route path='/about' element={<AboutPage />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/login' element={<Login />} />
-      </Routes>
+      <div
+        className={`transition-all duration-300 ${isOpenCartCartDrawer
+            ? "lg:mr-[150px]"
+            : "mr-0"
+          }`}
+      >
+        <Routes>
+          <Route path="/" element={<HomePage />} exact />
+          <Route path="/shop/:gender?/:categoryName?/:categoryId?" element={<ShopPage />} />
+          <Route path='shop/:gender?/:categoryName/:categoryId/:productNameSlug/:productId'
+            element={<ProductDetailPage setisOpenCartCartDrawer={setisOpenCartCartDrawer} />} />
+          <Route path='/contact' element={<ContactPage />} />
+          <Route path='/team' element={<TeamPage />} />
+          <Route path='/about' element={<AboutPage />} />
+          <Route path='/signup' element={<SignUp />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/shoppingCard' element={<ShopingCartPage />} />
+        </Routes>
+      </div>
+      {isOpenCartCartDrawer && (
+        <CartDrawerContext
+          isOpenCartCartDrawer={isOpenCartCartDrawer}
+          setisOpenCartCartDrawer={setisOpenCartCartDrawer}
+        />
+      )}
+
     </>
 
-  )
+  );
+  
 }
 
 export default App
+
