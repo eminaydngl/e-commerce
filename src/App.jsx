@@ -14,6 +14,10 @@ import { useEffect, useState } from 'react';
 import { categoriesThunk, productThunk, verifyThunk } from './store/actions/thunks';
 import CartDrawerContext from './components/CartDrawerContext';
 import ShopingCartPage from './pages/ShopingCartPage';
+import PaymentPage from './pages/PaymentPage';
+import instance from './api/axios';
+import ProtectedRoute from './components/ProtectedRoute';
+import OrdersPage from './pages/OrdersPage';
 
 function App() {
 
@@ -35,8 +39,8 @@ function App() {
       <ScrollToTop />
       <div
         className={`transition-all duration-300 ${isOpenCartCartDrawer
-            ? "lg:mr-[150px]"
-            : "mr-0"
+          ? "lg:mr-[150px]"
+          : "mr-0"
           }`}
       >
         <Routes>
@@ -50,6 +54,15 @@ function App() {
           <Route path='/signup' element={<SignUp />} />
           <Route path='/login' element={<Login />} />
           <Route path='/shoppingCard' element={<ShopingCartPage />} />
+          <Route path="/myOrders" element={<OrdersPage />} />
+          <Route
+            path="/payment"
+            element={
+              <ProtectedRoute>
+                <PaymentPage />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </div>
       {isOpenCartCartDrawer && (
@@ -62,7 +75,7 @@ function App() {
     </>
 
   );
-  
+
 }
 
 export default App

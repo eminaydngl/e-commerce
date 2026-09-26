@@ -1,4 +1,4 @@
-import { SET_USER, SET_ROLES, SET_THEME, SET_LANGUAGE } from "../actionTypes";
+import { SET_USER, SET_ROLES, SET_THEME, SET_LANGUAGE, SET_ADDRESS_LIST, SET_CREDIT_CARD } from "../actionTypes";
 
 export const setUser = (user) => ({
     type : SET_USER ,
@@ -20,3 +20,12 @@ export const setLanguage = (language) => ({
     payload : language
 });
 
+export const setAddressList = (addressList) => ({
+    type : SET_ADDRESS_LIST ,
+    payload : addressList
+});
+
+export const setCreditCard = (creditCard) => ({
+    type : SET_CREDIT_CARD , 
+    payload : creditCard
+});

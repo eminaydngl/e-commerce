@@ -1,4 +1,4 @@
-import { SET_CART, SET_PAYMENT, SET_ADDRESS } from "../actionTypes";
+import { SET_CART, SET_PAYMENT, SET_ADDRESS, SET_ORDER } from "../actionTypes";
 
 export const setCart = (cart) => ({
     type : SET_CART ,
@@ -15,5 +15,9 @@ export const setPayment = (payment) => ({
     payload : payment
 });
 
+export const SetOrder = (order) => ({
+    type : SET_ORDER , 
+    payload : order
+})
 
  

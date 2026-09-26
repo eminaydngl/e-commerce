@@ -1,4 +1,4 @@
-import { SET_USER, SET_ROLES, SET_THEME, SET_LANGUAGE } from "../actionTypes";
+import { SET_USER, SET_ROLES, SET_THEME, SET_LANGUAGE, SET_ADDRESS_LIST, SET_CREDIT_CARD } from "../actionTypes";
 
 const initialState = {
     user: {},
@@ -12,7 +12,11 @@ const initialState = {
 function clientReducer(state = initialState, action) {
     switch (action.type) {
         case SET_USER:
-            return { ...state, user: action.payload };
+            return { ...state , user: action.payload };
+        case SET_ADDRESS_LIST:
+            return {...state , addressList : action.payload};
+        case SET_CREDIT_CARD : 
+            return {...state , creditCards : action.payload}; 
         case SET_ROLES:
             return {...state , roles : action.payload};
         case SET_THEME:

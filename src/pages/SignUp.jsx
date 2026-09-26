@@ -256,7 +256,6 @@ function SignUp() {
 
 
 
-
                     {watch("role_id") === 2 && (
                         <div className="flex flex-col gap-5 items-center bg-white p-8 rounded-xl shadow-lg w-[350px]">
 

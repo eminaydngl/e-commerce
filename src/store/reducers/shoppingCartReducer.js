@@ -1,7 +1,8 @@
-import { SET_CART, SET_PAYMENT, SET_ADDRESS } from "../actionTypes";
+import { SET_CART, SET_PAYMENT, SET_ADDRESS, SET_ORDER } from "../actionTypes";
 const initialState = {
     cart: [],
     payment: {},
+    order : [] ,
     address: {}
 }
 
@@ -11,6 +12,8 @@ function shoppingCartReducer(state = initialState, action) {
             return { ...state, cart: action.payload };
         case SET_ADDRESS:
             return { ...state, address: action.payload };
+        case SET_ORDER : 
+            return {...state , order : action.payload };
         case SET_PAYMENT:
             return { ...state, payment: action.payload };
         default:

@@ -166,10 +166,11 @@ function Header() {
                         Contact
                     </NavLink>
 
-                    <NavLink to="#" className={({ isActive }) =>
-                        `flex items-center gap-1 hover:text-brand-dark`
+                    <NavLink to="/myOrders" className={({ isActive }) =>
+                        `flex items-center gap-1 hover:text-brand-dark ${isActive ? "text-black font-bold" : ""}`
                     }>
-                        Pages
+                        My Orders
+
                     </NavLink>
 
                 </nav>
@@ -312,10 +313,11 @@ function Header() {
                         Contact
                     </NavLink>
 
-                    <NavLink to="#" className={({ isActive }) =>
-                        `flex items-center gap-1 hover:text-brand-dark`
+                    <NavLink to="/myOrders" className={({ isActive }) =>
+                        `flex items-center gap-1 hover:text-brand-dark ${isActive ? "text-black font-bold" : ""}`
                     }>
-                        Pages
+                        My Orders
+
                     </NavLink>
 
                 </nav>
